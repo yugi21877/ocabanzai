@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>うるう年の計算</title>
+</head>
+
+<body>
+    <button onclick="caution()">うるう年計算</button>
+    <div id="result">うるう年か判定します</div>
+
+    <script>
+        const r = document.getElementById('result');
+
+        const caution = () => {
+            const y = prompt("西暦年を入れてください。");
+
+            if (calc_leap(y) == true) {
+                r.textContent = y + '年はうるう年';
+            } else {
+                r.textContent = y + '年はうるう年ではありません';
+            }
+        }
+
+        const calc_leap = (year) => {
+            const yNum = Number(year);
+            // if (yNum % 400 === 0 || ) {
+            //     if (yNum % 100 === 0) 
+            //         if (yNum % 400 === 0) 
+            //     return true;
+            // } else {
+            //     return false;
+            // }
+
+            if (yNum % 400 === 0 || (yNum % 4 === 0 && yNum % 100 !== 0)) {
+                // console.log(`西暦${year}年はうるう年です`);
+                return true;
+            } else {
+                // console.log(`西暦${year}年はうるう年ではありません`);
+                return false;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
