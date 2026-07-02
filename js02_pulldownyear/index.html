@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西暦から和暦への変換</title>
+</head>
+
+<body>
+    <h1>西暦から和暦へ変換</h1>
+    <label for="yearSelect">西暦を選んでください。</label>
+    <select id="yearSelect"></select>
+    <!-- <button onclick="convertWareki()">変換</button> -->
+    <div id="result">西暦を選ぶと和暦を表示します</div>
+
+
+    <script>
+        const yearSelect = document.getElementById('yearSelect');
+        const result = document.getElementById('result');
+
+
+        // プルダウンに西暦の選択肢を追加する
+        for (let year = 2028; year >= 1897; year--) {
+            const option = document.createElement(`option`);
+            option.value = String(year);
+            option.textContent = `${year}年`;
+            yearSelect.appendChild(option);
+        }
+        /**
+                * 西暦を和暦に変換する関数
+                */
+        const convertWareki = () => {
+            // 選択された西暦の値を取得
+            const year = Number(yearSelect.value);
+
+
+            // 和暦の変換処理
+            // 和暦は西暦の最初の年が「1年」なので、変換式は「西暦 − 元号開始年 + 1」になります。
+            if (year >= 2019) {
+                result.textContent = `${year}年は令和${year - 2019 + 1}年です`;
+            } else if (year >= 1989) {
+                result.textContent = `${year}年は平成${year - 1989 + 1}年です`;
+            } else if (year >= 1926) {
+                result.textContent = `${year}年は昭和${year - 1926 + 1}年です`;
+            } else if (year >= 1912) {
+                result.textContent = `${year}年は大正${year - 1912 + 1}年です`;
+            } else if (year >= 1868) {
+                result.textContent = `${year}年は明治${year - 1868 + 1}年です`;
+            } else {
+                result.textContent = '和暦に変換できませんでした';
+            }
+        }
+
+
+        // プルダウンの選択が変更されたときに変換処理を呼び出す
+        yearSelect.addEventListener('change', convertWareki);
+    </script>
+</body>
+
+</html>
